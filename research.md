@@ -291,19 +291,84 @@ Useful for multi-platform publishing automation and programmatic impressions dat
 
 ---
 
+## Blazel
+
+**Website:** blazel.com | **Founded:** 2024 | **HQ:** Palo Alto, CA | **Funding:** $7.3M (Recursive Ventures, Scale Asia Ventures) | **Founder:** Zain Jaffer (prev. Vungle — $400M ARR, sold for $780M)
+
+### Public Offering
+Managed LinkedIn ghostwriting service. AI agents + human marketing managers create content on your behalf. Dedicated Slack channel, monthly interview, content calendar.
+
+### Claimed Analytics Features (from DM, not publicly documented)
+1. Pull engagement metrics, filter by ICP, surface in dashboard for outreach
+2. Competitor analysis — see how competitor employees rank for social, surface ICP accounts competitors talk to publicly
+3. Audience mix analysis — identify ICP breakdown, company-level penetration
+4. Top engagers highlighted in dashboard
+
+### Verification Status
+**None of the analytics features above are publicly documented.** No screenshots, no product demos, no G2/Capterra reviews, no Product Hunt listing. Website positions Blazel as a content service, not an analytics platform.
+
+**However:** With $7.3M in funding, 29 employees, and "shipping new analytics every 2 weeks," these features could be in private beta or unreleased. Worth requesting a live demo to verify before committing.
+
+---
+
+## Social Selling / Engagement Intelligence Tools
+
+A category of tools that frame the problem differently — not "LinkedIn analytics" but "who is engaging with your content and do they match your ICP?" These are closer to what's actually needed.
+
+### Trigify
+- **Website:** trigify.io
+- **Price:** $69-549/mo
+- **What it does:** Real-time LinkedIn social listening with ICP filtering. Custom ICP criteria, engagement notifications, profile enrichment, CRM/Clay/Slack integration. Monitor competitor engagement.
+- **Verdict:** Strong match for ICP-filtered engagement intelligence. Verified public documentation of features.
+
+### Letterdrop
+- **Website:** letterdrop.com
+- **Price:** Contact for pricing
+- **What it does:** Tracks who likes, comments, follows, connects. Built-in ICP filtering on engaged accounts. Historical engagement data dashboard. Social listening with AI intent filtering. HubSpot/Salesforce/Gong integration.
+- **Verdict:** Claims 63% of their pipeline is LinkedIn-driven. Strong social selling angle with documented analytics features.
+
+### Teamfluence
+- **Website:** teamfluence.com
+- **Price:** Contact for pricing
+- **What it does:** Detects profile visits, post commentators, likes, shares, new connections. AI checks if engagers match ICP criteria, then enriches with email/phone. Tracks competitor posts and influencer activity. HubSpot/Clay/Slack integration.
+- **Verdict:** Team-level LinkedIn signal tracking with ICP matching. Worth evaluating for agencies.
+
+### Linkbound
+- **Website:** linkbound.io
+- **Price:** Chrome extension (pricing TBD)
+- **What it does:** Engagement dashboard with ICP filtering by job title, company, industry, location, engagement level. Multi-offer ICP intelligence. Top engagers tracking. Kanban pipeline visualization. Track up to 10 profiles.
+- **Verdict:** Lightweight, closest to a turnkey solution for the original problem. Claims full LinkedIn ToS compliance.
+
+### Comparison
+
+| Tool | ICP-Filtered Engagement | Competitor Intel | Audience Demographics | Top Engagers | Client Reports | Price |
+|---|---|---|---|---|---|---|
+| Trigify | Yes | Yes | Via enrichment | Yes (real-time alerts) | TBD | $69-549/mo |
+| Letterdrop | Yes | Yes (social listening) | Yes (historical) | Yes | HubSpot/Salesforce | Contact |
+| Teamfluence | Yes (AI-powered) | Yes | Yes (enriched) | Yes | CRM integration | Contact |
+| Linkbound | Yes | Yes (10 profiles) | Yes | Yes (kanban) | TBD | TBD |
+| Blazel | Claimed, unverified | Claimed, unverified | Claimed, unverified | Claimed, unverified | Unknown | Unknown |
+
+---
+
 ## Updated Recommendations
 
 ### Best Path for Audience Quality Demographics (Personal Profiles)
 
-1. **Apify pipeline** — extract engagers, enrich profiles, classify with LLM → gives you individual-level data, not just percentages. Works today. Requires some technical build-out.
-2. **Shield CSV export → dashboard** — aggregate Shield's per-post demographics manually. Simpler but tedious.
-3. **Wait for Metricool/Vista Social** — they're building on the new API. Demographic aggregation features likely coming.
+1. **Trigify, Letterdrop, or Linkbound** — productized tools with ICP-filtered engagement intelligence, documented features, and audience demographic breakdowns. Evaluate all three.
+2. **Blazel** — request a live demo to verify the analytics features. If real, potentially the most complete solution (content + analytics). But unverified.
+3. **Apify pipeline** — extract engagers, enrich profiles, classify with LLM. Most flexible, works today, requires technical build-out.
+4. **Shield CSV export → dashboard** — aggregate Shield's per-post demographics manually. Simpler but tedious.
+5. **Wait for Metricool/Vista Social** — building on the new API. Demographic aggregation features likely coming.
 
 ### Best Path for Impressions/Engagement Reporting
 - **Late** or **Metricool** — both provide aggregated engagement metrics via official API
 
 ### Best Path for Multi-Platform Ghostwriting
 - **Late** — API-first, supports 11+ platforms, integrates with automation tools
+
+### Key Reframe
+The original problem was framed as "LinkedIn analytics" — but the real need is **engagement-qualified audience intelligence**: who is engaging, do they match your ICP, and can you share that with clients? The social selling tools (Trigify, Letterdrop, Teamfluence, Linkbound) are closer to solving this than traditional analytics tools (Shield, Sprout Social, Metricool).
 
 ---
 
