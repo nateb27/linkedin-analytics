@@ -195,6 +195,115 @@ This is a product gap waiting to be filled. The API now supports aggregated pers
 | Wait for Metricool/Vista Social to ship demographic aggregation | High | Months, not years |
 | Shield CSV export → Google Sheets/Looker Studio dashboard | Works today | A weekend |
 | Partner with an approved vendor to request the feature | Medium | Depends on relationship |
+| **Apify scraping + enrichment pipeline** | **Works today** | **A weekend + classification work** |
+
+---
+
+## Apify Scraping + Enrichment Approach
+
+An alternative to the official LinkedIn API: use Apify's marketplace of LinkedIn scrapers to extract engager data, enrich profiles, and classify demographics yourself.
+
+### The Pipeline
+
+```
+Step 1: Scrape your posts
+  → harvestapi/linkedin-profile-posts (~$2/1k posts)
+
+Step 2: Extract engagers (commenters + likers) per post
+  → scraping_solutions/linkedin-posts-engagers-no-cookies (~$1.2/1k)
+  → harvestapi/linkedin-post-comments (~$2/1k)
+
+Step 3: Deduplicate by profile URL
+
+Step 4: Enrich unique profiles
+  → anchor/linkedin-profile-enrichment
+  → supreme_coder/linkedin-profile-scraper (~$3/1k)
+  Returns: name, headline, location, industry, experience[], education[]
+
+Step 5: Classify demographics (custom code required)
+  → Parse job title → seniority bucket (Entry/Senior/Manager/Director/VP/CxO)
+  → Parse company/headline → industry category
+  → Parse location → geographic region
+  → LLM classifier, regex, or lookup table
+
+Step 6: Aggregate + build client report/dashboard
+```
+
+### Cost Estimates
+
+| Volume | Monthly Cost |
+|---|---|
+| Small consultant (500 engagers/mo) | ~$5/mo on free tier |
+| Active consultant (2,000 engagers/mo) | ~$39-49/mo on Starter |
+| Agency (10,000 engagers/mo) | ~$199-300/mo on Scale |
+
+### Key Limitations
+- **No personal profile follower lists** — follower scrapers only work for company pages with admin access. For personal profiles, you can only get engagers (commenters/likers), not followers.
+- **No "seniority" field in scraped data** — LinkedIn doesn't expose this publicly. Must be inferred from job titles via classification logic.
+- **Scraper reliability varies** — third-party actors break when LinkedIn changes frontend. Dependent on actor developers maintaining them.
+- **LinkedIn ToS risk:** No-cookie scrapers on public data are low risk (post-hiQ v. LinkedIn ruling), but cookie-based scraping risks account restriction. For a consultant whose livelihood depends on LinkedIn presence, use no-cookie actors only.
+
+### What You Get vs. Official API
+
+| Data Point | Apify Pipeline | Official API |
+|---|---|---|
+| Individual engager profiles | Yes (name, headline, URL) | No |
+| Full profile enrichment | Yes (experience, education, location) | No |
+| Seniority classification | Must build yourself | LinkedIn provides natively (as %) |
+| Industry classification | Must build yourself | LinkedIn provides natively (as %) |
+| Location | Yes (from profile) | LinkedIn provides natively (as %) |
+| Impressions / reach | No (only engagement, not views) | Yes |
+| Historical data | As far back as posts exist | Limited by API retention |
+
+### Orchestration Options
+- **Apify API + Python/Node script** — most flexible
+- **n8n / Make / Zapier** — Apify integration nodes, no code
+- **Apify Schedules** — recurring runs with webhook triggers
+
+---
+
+## Late (getlate.dev)
+
+Developer-first multi-platform social media API. Supports 11+ platforms (LinkedIn, X, Instagram, TikTok, YouTube, Threads, Reddit, Pinterest, Bluesky, etc.).
+
+### What It Does Well
+- **Impressions data:** Yes — pulls impressions, reach, reactions, comments, reshares via official LinkedIn OAuth API
+- **Aggregate metrics:** Can aggregate engagement data across all posts with date range filtering
+- **Multi-platform publishing:** One API call publishes to all connected platforms
+- **Connectors:** Integrates with n8n, Make, Zapier for automation workflows
+- **Account scale:** Supports 300+ accounts on higher tiers
+
+### What It Does NOT Do
+- **Audience demographics:** Does not surface viewer demographics (seniority, industry, location). Uses same `r_member_postAnalytics` API scope as other tools, which returns engagement counts but not demographic breakdowns.
+- **Client-facing reports:** No white-label reporting, no visual dashboard designed for sharing with clients
+- **Turnkey agency tool:** Developer infrastructure, not a purpose-built ghostwriting/agency platform
+
+### Pricing
+| Plan | Price | Key Features |
+|---|---|---|
+| Free | $0/mo | 20 posts/month, 2 profiles |
+| Build | $13/mo | More posts, API access |
+| Accelerate | ~$33/mo | 50 profiles, higher limits |
+| Analytics add-on | +$10/mo | Required for any analytics |
+
+### Verdict
+Useful for multi-platform publishing automation and programmatic impressions data. Not a solution for aggregated audience quality demographics. The "helpful connectors for ghostwriting" refers to the n8n/Make/Zapier integrations — powerful but requires building your own workflow.
+
+---
+
+## Updated Recommendations
+
+### Best Path for Audience Quality Demographics (Personal Profiles)
+
+1. **Apify pipeline** — extract engagers, enrich profiles, classify with LLM → gives you individual-level data, not just percentages. Works today. Requires some technical build-out.
+2. **Shield CSV export → dashboard** — aggregate Shield's per-post demographics manually. Simpler but tedious.
+3. **Wait for Metricool/Vista Social** — they're building on the new API. Demographic aggregation features likely coming.
+
+### Best Path for Impressions/Engagement Reporting
+- **Late** or **Metricool** — both provide aggregated engagement metrics via official API
+
+### Best Path for Multi-Platform Ghostwriting
+- **Late** — API-first, supports 11+ platforms, integrates with automation tools
 
 ---
 
