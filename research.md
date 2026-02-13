@@ -134,6 +134,70 @@ This is a product gap waiting to be filled. The API now supports aggregated pers
 
 ---
 
+## LinkedIn API Approval Process
+
+### What You Need
+- **API Product:** Community Management API (includes `memberCreatorPostAnalytics`)
+- **OAuth Scope:** `r_member_postAnalytics`
+
+### Hard Requirements
+- Registered legal entity (LLC, Corp, etc.) — individuals without one cannot apply
+- LinkedIn Company Page where you are a super admin
+- Business email address (no Gmail/Yahoo)
+- Professional website with published privacy policy
+- Community Management API must be the **sole product** on the app (cannot mix with Sign In, Share, etc.)
+
+### Two-Tier Process
+
+**Tier 1 — Development (2-4 weeks to months for approval):**
+1. Create a developer app at developer.linkedin.com
+2. Add the Community Management API product
+3. Complete the access request form (company details, use case, privacy policy URL)
+4. LinkedIn reviews and approves/rejects
+
+**Tier 2 — Standard (additional review period):**
+1. Build a fully working integration on Development Tier
+2. Record a screencast demo of entire OAuth flow + every declared use case
+3. Provide test credentials for LinkedIn reviewers
+4. Submit Standard Tier upgrade request
+5. **12-month deadline** from Development approval to complete this
+
+### Timeline and Costs
+- **End-to-end timeline:** 3-6 months typical
+- **API access fee:** Free (LinkedIn reserves right to charge in future)
+- **Real costs:** Time, legal entity formation, development effort, compliance engineering
+
+### Approval Odds — Honest Assessment
+- **Approval rate: under 10%** across all Marketing API applications
+- Rejections come with **no useful feedback**
+- If rejected, **cannot reapply with same app** — must create new one
+- Many applicants report **never hearing back**
+- LinkedIn retains full discretion regardless of whether you meet requirements
+
+### Data Storage Restrictions (Potential Dealbreaker)
+- Member social activity data: can only be cached for **48 hours**
+- Member profile data: can only be cached for **24 hours**
+- Data cannot be exported, distributed, or transferred from your application
+- Data cannot be combined with other data sources
+- These restrictions make historical aggregated dashboards technically challenging
+
+### Who Gets Approved?
+- **Better odds:** SaaS platforms serving many LinkedIn consultants/agencies (LinkedIn wants ecosystem growth)
+- **Worse odds:** Internal tools for a single consulting practice
+- Approved vendors include mid-size companies (Metricool, Publer, Vista Social) — not just enterprise giants
+- Positioning as a third-party analytics platform significantly improves chances
+
+### Strategic Paths
+
+| Path | Feasibility | Timeline |
+|---|---|---|
+| Build a SaaS product, apply for API | Possible (~10% approval) | 3-6 months |
+| Wait for Metricool/Vista Social to ship demographic aggregation | High | Months, not years |
+| Shield CSV export → Google Sheets/Looker Studio dashboard | Works today | A weekend |
+| Partner with an approved vendor to request the feature | Medium | Depends on relationship |
+
+---
+
 ## Sources
 - [LinkedIn Member Post Statistics API](https://learn.microsoft.com/en-us/linkedin/marketing/community-management/members/post-statistics)
 - [LinkedIn Help - Recent Changes to Demographics](https://www.linkedin.com/help/linkedin/answer/a1624090)
@@ -142,3 +206,11 @@ This is a product gap waiting to be filled. The API now supports aggregated pers
 - [Sprout Social LinkedIn Analytics](https://sproutsocial.com/insights/linkedin-analytics/)
 - [Metricool LinkedIn Personal Profile Analytics](https://metricool.com/press-release-metricool-launches-linkedin-analytics-for-personal-profiles/)
 - [Vista Social LinkedIn Reports](https://support.vistasocial.com/hc/en-us/articles/26935050400667)
+- [Community Management App Review - Microsoft Learn](https://learn.microsoft.com/en-us/linkedin/marketing/community-management-app-review)
+- [Increasing Access / Tier Upgrades - Microsoft Learn](https://learn.microsoft.com/en-us/linkedin/marketing/increasing-access)
+- [LinkedIn Marketing API Program Tiers - Microsoft Learn](https://learn.microsoft.com/en-us/linkedin/marketing/integrations/marketing-tiers)
+- [LinkedIn API Rate Limiting - Microsoft Learn](https://learn.microsoft.com/en-us/linkedin/shared/api-guide/concepts/rate-limits)
+- [Data Storage Requirements - Microsoft Learn](https://learn.microsoft.com/en-us/linkedin/marketing/data-storage-requirements)
+- [Restricted Use Cases - Microsoft Learn](https://learn.microsoft.com/en-us/linkedin/marketing/restricted-use-cases)
+- [LinkedIn Marketing Developer Terms](https://www.linkedin.com/legal/l/marketing-api-terms)
+- [LinkedIn API Terms of Use](https://www.linkedin.com/legal/l/api-terms-of-use)
